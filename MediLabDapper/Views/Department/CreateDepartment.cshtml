@@ -1,0 +1,18 @@
+﻿@model CreateDepartmentDto
+@{
+    ViewData["Title"] = "CreateDepartment";
+}
+
+<h3>Yeni Bölüm Ekle</h3>
+<form method="post">
+    <label>Bölüm Adı</label>
+    <input type="text" asp-for="DepartmentName" class="form-control" />
+    <br />
+    <label>Açıklama</label>
+    <input type="text" asp-for="Description" class="form-control" />
+    <br />
+    <div class="text-center">
+        <button class="btn btn-primary">Kaydet</button>
+    </div>
+</form>
+

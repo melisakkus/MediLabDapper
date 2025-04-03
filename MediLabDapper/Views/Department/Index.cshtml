@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ResultDepartmentDto>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Bölümler</h1>
+<br />
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>#</th>
+        <th>Bölüm Adı</th>
+        <th>Açıklama</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.DepartmentId</td>
+            <td>@item.DepartmentName</td>
+            <td>@item.Description</td>
+            <td>
+                <a href="/Department/DeleteDepartment/@item.DepartmentId" class="btn btn-danger">Sil</a>
+                <a href="/Department/UpdateDepartment/@item.DepartmentId" class="btn btn-info">Güncelle</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="text-center">
+    <a href="/Department/CreateDepartment" class="btn btn-info">Yeni Bölüm Ekle</a>
+</div>
