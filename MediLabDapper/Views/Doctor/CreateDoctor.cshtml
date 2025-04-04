@@ -1,0 +1,35 @@
+﻿@model CreateDoctorDto
+@{
+    ViewData["Title"] = "CreateDoctor";
+}
+
+<h1>Yeni Doktor Ekle</h1>
+<form method="post">
+    <div class="form-group">
+        <label>Doktor Ad Soyad</label>
+        <input type="text" asp-for="NameSurname" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Resim Url</label>
+        <input type="text" asp-for="ImageUrl" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Açıklama</label>
+        <input type="text" asp-for="Description" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Bölüm</label>
+        <select asp-for="DepartmentId" asp-items="@ViewBag.Departments" class="form-control">
+            <option disabled selected>Bölüm Seçiniz</option>
+        </select>
+    </div>
+
+    <div class="d-flex justify-content-center mt-4">
+        <button class="btn btn-primary">Kaydet</button>
+    </div>
+
+</form>
+
