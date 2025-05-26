@@ -26,6 +26,10 @@ namespace MediLabDapper.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateDepartment(CreateDepartmentDto createDepartmentDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(createDepartmentDto);
+            }
             await _departmentRepository.CreateDepartmentAsync(createDepartmentDto);
             return RedirectToAction("Index");
         }
@@ -33,12 +37,22 @@ namespace MediLabDapper.Controllers
         public async Task<IActionResult> UpdateDepartment(int id)
         {
             var department = await _departmentRepository.GetDepartmentByIdAsync(id);
-            return View(department);
+            var value = new UpdateDepartmentDto
+            {
+                DepartmentId = department.DepartmentId,
+                DepartmentName = department.DepartmentName,
+                Description = department.Description
+            };
+            return View(value);
         }
 
         [HttpPost]
         public async Task<IActionResult> UpdateDepartment(UpdateDepartmentDto updateDepartmentDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(updateDepartmentDto);
+            }
             await _departmentRepository.UpdateDepartmentAsync(updateDepartmentDto);
             return RedirectToAction("Index");
         }

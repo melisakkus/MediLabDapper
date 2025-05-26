@@ -2,39 +2,57 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
 }
 @{
     int count = 0;
 }
 
-<h1>Doktorlar</h1>
-<br />
-<table class="table table-bordered table-hover">
-    <tr>
-        <th>#</th>
-        <th>Görsel</th>
-        <th>Ad Soyad</th>
-        <th>Açıklama</th>
-        <th>Bölümü</th>
-        <th>İşlemler</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        count++;
-        <tr>
-            <td>@count</td>
-            <td><img src="@item.ImageUrl" style="height:75px;width:75px; border-radius:50%"/></td>            
-            <td>@item.NameSurname</td>
-            <td>@item.Description</td>
-            <td>@item.DepartmentName</td>
-            <td>
-                <a href="/Doctor/DeleteDoctor/@item.DoctorId" class="btn btn-danger">Sil</a>
-                <a href="/Doctor/UpdateDoctor/@item.DoctorId" class="btn btn-info">Güncelle</a>
-            </td>
-        </tr>
-    }
-</table>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Doktorlar</h4>
 
-<div class="text-center">
-    <a href="/Doctor/CreateDoctor" class="btn btn-info">Yeni Doktor Ekle</a>
+    <div class="card">
+        <div class="table-responsive text-nowrap">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Görsel</th>
+                        <th>Ad Soyad</th>
+                        <th>Açıklama</th>
+                        <th>Bölümü</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <td><strong>@count</strong></td>
+                            <td><img src="@item.ImageUrl" style="height:75px;width:75px; border-radius:50%" /></td>
+                            <td>@item.NameSurname</td>
+                            <td>@item.Description</td>
+                            <td>@item.DepartmentName</td>
+                            <td>
+                                <a href="/Doctor/DeleteDoctor/@item.DoctorId" class="btn btn-sm btn-danger me-2">
+                                    <i class="bx bx-trash me-1"></i> Sil
+                                </a>
+                                <a href="/Doctor/UpdateDoctor/@item.DoctorId" class="btn btn-sm btn-info">
+                                    <i class="bx bx-edit-alt me-1"></i> Güncelle
+                                </a>
+                            </td>
+                        </tr>
+                    }                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a href="/Doctor/CreateDoctor" class="btn btn-primary">
+            <i class="bx bx-plus me-1"></i> Yeni Doktor Ekle
+        </a>
+    </div>
 </div>

@@ -1,35 +1,51 @@
 ﻿@model CreateDoctorDto
+
 @{
-    ViewData["Title"] = "CreateDoctor";
+    ViewData["Title"] = "Yeni Doktor Ekle";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
 }
 
-<h1>Yeni Doktor Ekle</h1>
-<form method="post">
-    <div class="form-group">
-        <label>Doktor Ad Soyad</label>
-        <input type="text" asp-for="NameSurname" class="form-control" />
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Doktorlar /</span> Yeni Doktor Ekle</h4>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="NameSurname" class="form-label"> Ad Soyad</label>
+                    <input type="text" asp-for="NameSurname" class="form-control" id="NameSurname" />
+                    <span asp-validation-for="NameSurname" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="ImageUrl" class="form-label">Resim</label>
+                    <input type="text" asp-for="ImageUrl" class="form-control" id="ImageUrl" >
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Description" class="form-label">Açıklama</label>
+                    <textarea asp-for="Description" class="form-control" id="Description" rows="3"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="DepartmentId" class="form-label">Bölüm</label>
+                    <select asp-for="DepartmentId" asp-items="@ViewBag.Departments" class="form-select" id="DepartmentId" >
+                        <option value="">Bölüm Seçiniz</option>
+                    </select>
+                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="bx bx-save me-1"></i> Kaydet
+                    </button>
+                    <a href="/Doctor/Index" class="btn btn-secondary">
+                        <i class="bx bx-arrow-back me-1"></i> Geri Dön
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label>Resim Url</label>
-        <input type="text" asp-for="ImageUrl" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label>Açıklama</label>
-        <input type="text" asp-for="Description" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label>Bölüm</label>
-        <select asp-for="DepartmentId" asp-items="@ViewBag.Departments" class="form-control">
-            <option disabled selected>Bölüm Seçiniz</option>
-        </select>
-    </div>
-
-    <div class="d-flex justify-content-center mt-4">
-        <button class="btn btn-primary">Kaydet</button>
-    </div>
-
-</form>
-
+</div>

@@ -1,18 +1,35 @@
 ﻿@model CreateDepartmentDto
+
 @{
-    ViewData["Title"] = "CreateDepartment";
+    ViewData["Title"] = "Yeni Bölüm Ekle";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
 }
 
-<h3>Yeni Bölüm Ekle</h3>
-<form method="post">
-    <label>Bölüm Adı</label>
-    <input type="text" asp-for="DepartmentName" class="form-control" />
-    <br />
-    <label>Açıklama</label>
-    <input type="text" asp-for="Description" class="form-control" />
-    <br />
-    <div class="text-center">
-        <button class="btn btn-primary">Kaydet</button>
-    </div>
-</form>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Departmanlar /</span> Yeni Bölüm</h4>
 
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="DepartmentName" class="form-label">Bölüm Adı</label>
+                    <input type="text" asp-for="DepartmentName" class="form-control" id="DepartmentName" />
+                    <span asp-validation-for="DepartmentName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="Description" class="form-label">Açıklama</label>
+                    <input type="text" asp-for="Description" class="form-control" id="Description" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="mt-4 text-center">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="bx bx-save me-1"></i> Kaydet
+                    </button>
+                    <a href="/Department/Index" class="btn btn-secondary">
+                        <i class="bx bx-arrow-back me-1"></i> Geri Dön
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

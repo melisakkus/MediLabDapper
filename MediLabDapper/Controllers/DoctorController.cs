@@ -1,4 +1,5 @@
-﻿using MediLabDapper.Dtos.DoctorDtos;
+﻿using MediLabDapper.Dtos.DepartmentDtos;
+using MediLabDapper.Dtos.DoctorDtos;
 using MediLabDapper.Repositories.DepartmanRepositories;
 using MediLabDapper.Repositories.DoctorRepositories;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +42,10 @@ namespace MediLabDapper.Controllers
         public async Task<IActionResult> CreateDoctor(CreateDoctorDto createDoctorDto)
         {
             await GetDepartments();
+            if (!ModelState.IsValid)
+            {
+                return View(createDoctorDto);
+            }
             await _doctorRepository.CreateDoctorAsync(createDoctorDto);
             return RedirectToAction("Index");
         }
@@ -55,6 +60,10 @@ namespace MediLabDapper.Controllers
         public async Task<IActionResult> UpdateDoctor(UpdateDoctorDto updateDoctorDto)
         {
             await GetDepartments();
+            if (!ModelState.IsValid)
+            {
+                return View(updateDoctorDto);
+            }
             await _doctorRepository.UpdateDoctorAsync(updateDoctorDto);
             return RedirectToAction("Index");
         }

@@ -14,13 +14,14 @@ namespace MediLabDapper.Extensions
 
         }
 
+        //program.csde devamına (builder.Services.AddRepositoriesExt().AddAuthentication()... gibi) farklı metotlar ekleyebilmek için IServiceCollection dönelim ki akış bölünmesin
+
         //public static IServiceCollection AddRepositoriesExt(this IServiceCollection services)
         //{
         //    services.AddScoped<IDepartmentRepository, DepartmentRepository>();
         //    services.AddScoped<DapperContext>();
         //    return services;
         //}
-        //program.csde devamına (builder.Services.AddRepositoriesExt()...) farklı extension metotları ekleyebiliriz
 
 
     }

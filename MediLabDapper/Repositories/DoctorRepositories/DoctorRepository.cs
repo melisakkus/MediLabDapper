@@ -10,6 +10,11 @@ namespace MediLabDapper.Repositories.DoctorRepositories
         private readonly IDbConnection _db = _context.CreateConnection();
         public async Task CreateDoctorAsync(CreateDoctorDto createDoctorDto)
         {
+            if (createDoctorDto.ImageUrl == null || createDoctorDto.ImageUrl == "")
+            {
+                createDoctorDto.ImageUrl = "https://i.hizliresim.com/l74tw55.png";
+            }
+
             var query = "insert into Doctors (NameSurname,ImageUrl,Description,DepartmentId) values (@NameSurname,@ImageUrl,@Description,@DepartmentId)";
             var parameters = new DynamicParameters(createDoctorDto);
             //var connection = _db;
@@ -30,10 +35,10 @@ namespace MediLabDapper.Repositories.DoctorRepositories
             return await _db.QueryAsync<ResultDoctorDto>(query);
         }
 
-        public Task<IEnumerable<ResultDoctorWithDepartmentDto>> GetAllDoctorsWithDepartmentAsync()
+        public async Task<IEnumerable<ResultDoctorWithDepartmentDto>> GetAllDoctorsWithDepartmentAsync()
         {
             var query = "Select DoctorId,NameSurname,ImageUrl,Doctors.Description,DepartmentName from Doctors inner join departments on Doctors.DepartmentId=Departments.DepartmentId";
-            return _db.QueryAsync<ResultDoctorWithDepartmentDto>(query);
+            return await _db.QueryAsync<ResultDoctorWithDepartmentDto>(query);
         }
 
         public Task<GetDoctorByIdDto> GetDoctorByIdAsync(int id)
@@ -46,6 +51,10 @@ namespace MediLabDapper.Repositories.DoctorRepositories
 
         public Task UpdateDoctorAsync(UpdateDoctorDto updateDoctorDto)
         {
+            if (updateDoctorDto.ImageUrl == null || updateDoctorDto.ImageUrl == "")
+            {
+                updateDoctorDto.ImageUrl = "https://i.hizliresim.com/l74tw55.png";
+            }
             var query = "update doctors set NameSurname=@NameSurname, ImageUrl=@ImageUrl, Description=@Description, DepartmentId=@DepartmentId where DoctorId=@DoctorId";
             var parameters = new DynamicParameters(updateDoctorDto);
             return _db.ExecuteAsync(query, parameters);
