@@ -1,4 +1,5 @@
 ﻿using MediLabDapper.Context;
+using MediLabDapper.Repositories.BannerRepositories;
 using MediLabDapper.Repositories.DepartmanRepositories;
 using MediLabDapper.Repositories.DoctorRepositories;
 
@@ -8,9 +9,11 @@ namespace MediLabDapper.Extensions
     {
         public static void AddRepositoriesExt(this IServiceCollection services)
         {
+            services.AddScoped<DapperContext>();
+
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IDoctorRepository,DoctorRepository>();
-            services.AddScoped<DapperContext>();
+            services.AddScoped<IBannerRepository,BannerRepository>();
 
         }
 
