@@ -1,5 +1,4 @@
-﻿@model IEnumerable<ResultBannerDto>
-
+﻿@model List<ResultContactDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Layout.cshtml";
@@ -9,7 +8,7 @@
 }
 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4">Öne Çıkan Alan</h4>
+    <h4 class="fw-bold py-3 mb-4">İletişim Bilgileri</h4>
 
     <div class="card">
         <div class="table-responsive text-nowrap">
@@ -17,23 +16,26 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Başlık</th>
-                        <th>Açıklama</th>
+                        <th>Konum</th>
+                        <th>Telefon</th>
+                        <th>Email</th>
                         <th>İşlemler</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
                     @foreach (var item in Model)
                     {
+                        count++;
                         <tr>
                             <td><strong>@count</strong></td>
-                            <td>@item.Title</td>
-                            <td>@item.Description</td>
+                            <td>@item.Location</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Email</td>
                             <td>
-                                <a href="/Banner/Delete/@item.BannerId" class="btn btn-sm btn-danger me-2">
+                                <a href="/Contact/Delete/@item.ContactId" class="btn btn-sm btn-danger me-2">
                                     <i class="bx bx-trash me-1"></i> Sil
                                 </a>
-                                <a href="/Banner/Update/@item.BannerId" class="btn btn-sm btn-info">
+                                <a href="/Contact/Update/@item.ContactId" class="btn btn-sm btn-info">
                                     <i class="bx bx-edit-alt me-1"></i> Güncelle
                                 </a>
                             </td>
@@ -45,8 +47,9 @@
     </div>
 
     <div class="mt-4 text-center">
-        <a href="/Banner/Create" class="btn btn-primary">
-            <i class="bx bx-plus me-1"></i> Yeni Alan Ekle
+        <a href="/Contact/Create" class="btn btn-primary">
+            <i class="bx bx-plus me-1"></i> Yeni İletişim Bilgisi Ekle
         </a>
     </div>
 </div>
+

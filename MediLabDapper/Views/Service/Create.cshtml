@@ -1,0 +1,39 @@
+﻿@model CreateServiceDto
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Hizmetler /</span> Yeni Hizmet</h4>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="Title" class="form-label">Başlık</label>
+                    <input type="text" asp-for="Title" class="form-control" id="DepartmentName" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="Explanation" class="form-label">Açıklama</label>
+                    <input type="text" asp-for="Explanation" class="form-control" id="Description" />
+                    <span asp-validation-for="Explanation" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="Icon" class="form-label">Ikon</label>
+                    <input type="text" asp-for="Icon" class="form-control" id="Description" />
+                    <span asp-validation-for="Icon" class="text-danger"></span>
+                </div>
+                <div class="mt-4 text-center">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="bx bx-save me-1"></i> Kaydet
+                    </button>
+                    <a href="/Service/Index" class="btn btn-secondary">
+                        <i class="bx bx-arrow-back me-1"></i> Geri Dön
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

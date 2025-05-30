@@ -13,7 +13,6 @@ namespace MediLabDapper.Dtos.TestimonialDtos
         public string Comment { get; set; }
 
         [Required(ErrorMessage = "Değerlendirme boş bırakılamaz.")]
-        [Range(1, 5, ErrorMessage = "Değerlendirme 1 ile 5 arasında olmalıdır.")]
         public int Review { get; set; }
         public string? JobTitle { get; set; }
     }

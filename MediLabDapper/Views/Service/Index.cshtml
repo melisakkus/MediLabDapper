@@ -1,5 +1,4 @@
-﻿@model IEnumerable<ResultBannerDto>
-
+﻿@model List<ResultServiceDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Layout.cshtml";
@@ -7,9 +6,8 @@
 @{
     int count = 0;
 }
-
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4">Öne Çıkan Alan</h4>
+    <h4 class="fw-bold py-3 mb-4">Hizmetler</h4>
 
     <div class="card">
         <div class="table-responsive text-nowrap">
@@ -25,15 +23,16 @@
                 <tbody class="table-border-bottom-0">
                     @foreach (var item in Model)
                     {
+                        count++;
                         <tr>
                             <td><strong>@count</strong></td>
                             <td>@item.Title</td>
-                            <td>@item.Description</td>
+                            <td>@item.Explanation</td>
                             <td>
-                                <a href="/Banner/Delete/@item.BannerId" class="btn btn-sm btn-danger me-2">
+                                <a href="/Service/Delete/@item.ServiceId" class="btn btn-sm btn-danger me-2">
                                     <i class="bx bx-trash me-1"></i> Sil
                                 </a>
-                                <a href="/Banner/Update/@item.BannerId" class="btn btn-sm btn-info">
+                                <a href="/Service/Update/@item.ServiceId" class="btn btn-sm btn-info">
                                     <i class="bx bx-edit-alt me-1"></i> Güncelle
                                 </a>
                             </td>
@@ -45,8 +44,9 @@
     </div>
 
     <div class="mt-4 text-center">
-        <a href="/Banner/Create" class="btn btn-primary">
-            <i class="bx bx-plus me-1"></i> Yeni Alan Ekle
+        <a href="/Service/Create" class="btn btn-primary">
+            <i class="bx bx-plus me-1"></i> Yeni Hizmet Ekle
         </a>
     </div>
 </div>
+

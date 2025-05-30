@@ -1,0 +1,78 @@
+﻿@model GeneralUpdateAppointmentDto
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Randevu /</span> Randevu Güncelle</h4>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="post">
+                <input type="hidden" asp-for="AppointmentId" />
+                <div class="mb-3">
+                    <label for="FullName" class="form-label">Ad Soyad</label>
+                    <input type="text" asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="Email" class="form-label">Email</label>
+                    <input type="email" asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="Phone" class="form-label">Telefon Numarası</label>
+                    <input type="text" asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="Date" class="form-label">Tarih</label>
+                    <input type="date" asp-for="Date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="Time" class="form-label">Saat</label>
+                    <input type="time" asp-for="Time" class="form-control" />
+                    <span asp-validation-for="Time" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="DepartmentId" class="form-label">Departman</label>
+                    <input type="number" asp-for="DepartmentId" class="form-control" />
+                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="DoctorId" class="form-label">Doktor</label>
+                    <input type="number" asp-for="DoctorId" class="form-control" />
+                    <span asp-validation-for="DoctorId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Message" class="form-label">Mesaj</label>
+                    <textarea asp-for="Message" class="form-control" rows="4"> </textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="IsApproved" class="form-label">Onay Durumu</label>
+                    <select asp-for="IsApproved" class="form-control"
+                            asp-items="Html.GetEnumSelectList<AppointmentStatusDto>()">
+                        <option disabled value="">Seçim Yapınız</option>
+                    </select>
+                    <span asp-validation-for="IsApproved" class="text-danger"></span>
+                </div>
+
+
+                <div class="mt-4 text-center">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="bx bx-save me-1"></i> Kaydet
+                    </button>
+                    <a href="/Appointment/Index" class="btn btn-secondary">
+                        <i class="bx bx-arrow-back me-1"></i> Geri Dön
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

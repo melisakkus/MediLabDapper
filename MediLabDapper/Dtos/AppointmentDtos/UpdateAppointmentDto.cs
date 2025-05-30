@@ -2,7 +2,7 @@
 
 namespace MediLabDapper.Dtos.AppointmentDtos
 {
-    public class UpdateAppointmentDto
+    public class GeneralUpdateAppointmentDto
     {
         public int AppointmentId { get; set; }
 
@@ -21,8 +21,7 @@ namespace MediLabDapper.Dtos.AppointmentDtos
         public DateTime Date { get; set; }
 
         [Required(ErrorMessage = "Randevu saati boş bırakılamaz.")]
-        [MaxLength(5, ErrorMessage = "Randevu saati en fazla 5 karakter olabilir.")]
-        public string Time { get; set; }
+        public TimeSpan Time { get; set; }
 
         [Required(ErrorMessage = "Bölüm seçilmelidir.")]
         public int DepartmentId { get; set; }
@@ -33,7 +32,7 @@ namespace MediLabDapper.Dtos.AppointmentDtos
         [MaxLength(400, ErrorMessage = "Randevu saati en fazla 400 karakter olabilir.")]
         public string? Message { get; set; }
 
-        public bool IsApproved { get; set; }
+        public AppointmentStatusDto IsApproved { get; set; }
 
     }
 }

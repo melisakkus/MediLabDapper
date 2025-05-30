@@ -7,8 +7,8 @@ namespace MediLabDapper.Repositories.AboutRepositories
     {
         Task<IEnumerable<ResultAboutDto>> GetAllAsync();
         Task<GetByIdAboutDto> GetByIdAsync(int id);
-        Task CreateAsync(CreateAboutDto createBannerDto);
-        Task UpdateAsync(UpdateAboutDto updateBannerDto);
+        Task CreateAsync(CreateAboutDto createAboutDto);
+        Task UpdateAsync(UpdateAboutDto updateAboutDto);
         Task DeleteAsync(int id);
     }
 }

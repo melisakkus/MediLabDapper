@@ -1,0 +1,137 @@
+﻿@model List<GeneralResultAppointmentDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+@{
+    int count = 0;
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Randevular</h4>
+
+    <div class="card">
+        <div class="table-responsive text-nowrap">
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>Onay Değİşİklİğİ</th>
+                        <th>Ad Soyad</th>
+                        <th>Doktor</th>
+                        <th>Departman</th>
+                        <th>Tarİh - Saat</th>
+                        <th>Onay Durumu</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <td>
+                                @if (item.IsApproved == AppointmentStatusDto.Onaylı)
+                                {
+                                    <a href="/Appointment/Decline/@item.AppointmentId" class="btn btn-outline-danger">Reddet</a>
+                                    <a href="/Appointment/Waiting/@item.AppointmentId" class="btn btn-outline-warning">Beklet</a>
+                                }
+                                else if (item.IsApproved == AppointmentStatusDto.Reddedildi)
+                                {
+                                    <a href="/Appointment/Approved/@item.AppointmentId" class="btn btn-outline-success">Onayla</a>
+                                    <a href="/Appointment/Waiting/@item.AppointmentId" class="btn btn-outline-warning">Beklet</a>
+                                }
+                                else
+                                {
+                                    <a href="/Appointment/Approved/@item.AppointmentId" class="btn btn-outline-success">Onayla</a>
+                                    <a href="/Appointment/Decline/@item.AppointmentId" class="btn btn-outline-danger">Reddet</a>
+                                }
+                            </td>
+                            <td>@item.FullName</td>
+                            <td>@item.DoctorId</td>
+                            <td>@item.DepartmentId</td>
+                            <td>@item.Date.ToString("dd-MM-yyyy") @item.Time.ToString("hh\\:mm")</td>
+                            <td>
+                                @if (item.IsApproved == AppointmentStatusDto.Onaylı)
+                                {
+                                    <span class="badge bg-label-success me-1">Onaylı</span>
+                                }
+                                else if (item.IsApproved == AppointmentStatusDto.Reddedildi)
+                                {
+                                    <span class="badge bg-label-danger me-1">Reddedildi</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-label-warning me-1">Beklemede</span>
+                                }
+                            </td>
+
+                            <td>
+                                <a href="/Appointment/Delete/@item.AppointmentId" class="btn btn-sm btn-danger me-2">
+                                    <i class="bx bx-trash me-1"></i> Sil
+                                </a>
+                                <a href="/Appointment/Update/@item.AppointmentId" class="btn btn-sm btn-info">
+                                    <i class="bx bx-edit-alt me-1"></i> Güncelle
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a href="/Appointment/Create" class="btn btn-primary">
+            <i class="bx bx-plus me-1"></i> Yeni Randevu Ekle
+        </a>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Açık Randevular</h4>
+
+    <div class="card">
+        <div class="table-responsive text-nowrap">
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>Doktor</th>
+                        <th>Departman</th>
+                        <th>Tarİh - Saat</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in @ViewBag.AppointmentList)
+                    {
+                        <tr>
+                            <td>@item.DoctorId</td>
+                            <td>@item.DepartmentId</td>
+                            <td>@item.Date.ToString("dd-MM-yyyy") @item.Time.ToString("hh\\:mm")</td>
+
+                            <td>
+                                <a href="/Appointment/Delete/@item.AppointmentId" class="btn btn-sm btn-danger me-2">
+                                    <i class="bx bx-trash me-1"></i> Sil
+                                </a>
+                                <a href="/Appointment/Update/@item.AppointmentId" class="btn btn-sm btn-info">
+                                    <i class="bx bx-edit-alt me-1"></i> Güncelle
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a href="/Appointment/Create" class="btn btn-primary">
+            <i class="bx bx-plus me-1"></i> Yeni Randevu Oluştur
+        </a>
+    </div>
+</div>
+

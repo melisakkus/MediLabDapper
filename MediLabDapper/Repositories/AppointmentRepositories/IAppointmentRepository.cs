@@ -5,10 +5,10 @@ namespace MediLabDapper.Repositories.AppointmentRepositories
 {
     public interface IAppointmentRepository
     {
-        Task<IEnumerable<ResultAppointmentDto>> GetAllAsync();
-        Task<GetByIdAppointmentDto> GetByIdAsync(int id);
-        Task CreateAsync(CreateAppointmentDto createBannerDto);
-        Task UpdateAsync(UpdateAboutDto updateBannerDto);
+        Task<IEnumerable<GeneralResultAppointmentDto>> GetAllAsync();
+        Task<GeneralGetByIdAppointmentDto> GetByIdAsync(int id);
+        Task CreateAsync(GeneralCreateAppointmentDto createAppointmentDto);
+        Task UpdateAsync(GeneralUpdateAppointmentDto updateAppointmentDto);
         Task DeleteAsync(int id);
     }
 }

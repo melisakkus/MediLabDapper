@@ -39,7 +39,7 @@ namespace MediLabDapper.Repositories.TestimonialRepositories
 
         public Task<GetByIdTestimonialDto> GetByIdAsync(int id)
         {
-            var query = "select 0 from testimonials where TestimonialId = @TestimonialId";
+            var query = "select * from testimonials where TestimonialId = @TestimonialId";
             var parameters = new DynamicParameters();
             parameters.Add("@TestimonialId", id);
             return _dbConnection.QueryFirstOrDefaultAsync<GetByIdTestimonialDto>(query, parameters);

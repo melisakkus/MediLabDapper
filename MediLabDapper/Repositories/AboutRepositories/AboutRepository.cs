@@ -23,12 +23,12 @@ namespace MediLabDapper.Repositories.AboutRepositories
             await _dbConnection.ExecuteAsync(query, parameter);
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-           var query = "delete form Abouts where AboutId = @AboutId";
+           var query = "delete from Abouts where AboutId = @AboutId";
             var parameter = new DynamicParameters();
             parameter.Add("@AboutId", id);
-            return _dbConnection.ExecuteAsync(query, parameter);
+            await _dbConnection.ExecuteAsync(query, parameter);
         }
 
         public Task<IEnumerable<ResultAboutDto>> GetAllAsync()

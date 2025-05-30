@@ -7,8 +7,8 @@ namespace MediLabDapper.Repositories.TestimonialRepositories
     {
         Task<IEnumerable<ResultTestimonialDto>> GetAllAsync();
         Task<GetByIdTestimonialDto> GetByIdAsync(int id);
-        Task CreateAsync(CreateTestimonialDto createBannerDto);
-        Task UpdateAsync(UpdateTestimonialDto updateBannerDto);
+        Task CreateAsync(CreateTestimonialDto createTestimonialDto);
+        Task UpdateAsync(UpdateTestimonialDto updateTestimonialDto);
         Task DeleteAsync(int id);
     }
 }

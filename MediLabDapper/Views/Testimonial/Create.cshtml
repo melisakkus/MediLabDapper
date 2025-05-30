@@ -1,0 +1,52 @@
+﻿@model CreateTestimonialDto
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Değerlendirmeler /</span> Yeni Değerlendirme </h4>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label">Yorum</label>
+                    <input type="text" asp-for="Comment" class="form-control" />
+                    <span asp-validation-for="Comment" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="FullName" class="form-label">Ad Soyad</label>
+                    <input type="text" asp-for="FullName" class="form-control"/>
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="Review" class="form-label">Puanlama</label>
+                    <select asp-for="Review" class="form-control">
+                        <option selected disabled value="">Puan Seçiniz</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <span asp-validation-for="Review" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="JobTitle" class="form-label">Meslek</label>
+                    <input type="text" asp-for="JobTitle" class="form-control" />
+                    <span asp-validation-for="JobTitle" class="text-danger"></span>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="bx bx-save me-1"></i> Kaydet
+                    </button>
+                    <a href="/Testimonial/Index" class="btn btn-secondary">
+                        <i class="bx bx-arrow-back me-1"></i> Geri Dön
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

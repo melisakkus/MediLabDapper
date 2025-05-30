@@ -1,0 +1,63 @@
+﻿@model CreateAboutDto
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Hakkımızda /</span> Yeni Hakkımızda Alanı</h4>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="Description" class="form-label">Ana Açıklama</label>
+                    <input type="text" asp-for="Description" class="form-control" id="Description" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Title1" class="form-label">Başlık - 1</label>
+                    <input type="text" asp-for="Title1" class="form-control" />
+                    <span asp-validation-for="Title1" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="Explanation1" class="form-label">Alt Açıklama - 1</label>
+                    <input type="text" asp-for="Explanation1" class="form-control" />
+                    <span asp-validation-for="Explanation1" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Title2" class="form-label">Başlık - 2</label>
+                    <input type="text" asp-for="Title2" class="form-control" />
+                    <span asp-validation-for="Title2" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="Explanation2" class="form-label">Alt Açıklama - 2</label>
+                    <input type="text" asp-for="Explanation2" class="form-control" />
+                    <span asp-validation-for="Explanation2" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Title3" class="form-label">Başlık - 3</label>
+                    <input type="text" asp-for="Title3" class="form-control" />
+                    <span asp-validation-for="Title3" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="Explanation3" class="form-label">Alt Açıklama - 3</label>
+                    <input type="text" asp-for="Explanation3" class="form-control" />
+                    <span asp-validation-for="Explanation3" class="text-danger"></span>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="bx bx-save me-1"></i> Kaydet
+                    </button>
+                    <a href="/About/Index" class="btn btn-secondary">
+                        <i class="bx bx-arrow-back me-1"></i> Geri Dön
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
