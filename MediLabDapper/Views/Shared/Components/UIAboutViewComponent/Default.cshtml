@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ResultAboutDto>
+@*UIAboutViewComponent*@
+<!-- About Section -->
+<section id="about" class="about section">
+
+    <div class="container">
+
+        <div class="row gy-4 gx-5">
+
+            <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="200">
+                <img src="~/MediLab-1.0.0/assets/img/about.jpg" class="img-fluid" alt="">
+                <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Hakkımızda</h3>
+                    <p>
+                        @item.Description
+                    </p>
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-vial-circle-check"></i>
+                            <div>
+                                <h5>@item.Title1</h5>
+                                <p>@item.Explanation1</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-pump-medical"></i>
+                            <div>
+                                <h5>@item.Title2</h5>
+                                <p>@item.Explanation2</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-heart-circle-xmark"></i>
+                            <div>
+                                <h5>@item.Title3</h5>
+                                <p>@item.Explanation3</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            }
+        </div>
+
+    </div>
+
+</section><!-- /About Section -->

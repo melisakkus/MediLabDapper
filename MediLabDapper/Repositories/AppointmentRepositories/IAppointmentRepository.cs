@@ -11,6 +11,9 @@ namespace MediLabDapper.Repositories.AppointmentRepositories
         Task DeleteAsync(int id);
 
         Task<IEnumerable<ResultAppointmentDto>> GetAppointmentsWDocWDep();
+        Task<IEnumerable<ResultAppointmentDto>> GetAvailableAppointmentsWDocWDep(int departmentId, int doctorId);
+        public Task UpdateAppointmentWithUserInfo(int appointmentId, CreateAppointmentDto dto);
+
 
     }
 }

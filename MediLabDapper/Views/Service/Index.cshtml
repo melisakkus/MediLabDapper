@@ -27,7 +27,7 @@
                         <tr>
                             <td><strong>@count</strong></td>
                             <td>@item.Title</td>
-                            <td>@item.Explanation</td>
+                            <td>@(item.Explanation.Length > 79 ? item.Explanation.Substring(0, 79) + "..." : item.Explanation)</td>
                             <td>
                                 <a href="/Service/Delete/@item.ServiceId" class="btn btn-sm btn-danger me-2">
                                     <i class="bx bx-trash me-1"></i> Sil

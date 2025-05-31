@@ -11,5 +11,8 @@ namespace MediLabDapper.Dtos.DepartmentDtos
         [Required(ErrorMessage = "Açıklama boş bırakılamaz.")]
         [MaxLength(500, ErrorMessage = "Açıklama en fazla 500 karakter olabilir.")]
         public string Description { get; set; }
+
+        public string? ImageUrl { get; set; }
+
     }
 }

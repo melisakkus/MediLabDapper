@@ -37,13 +37,13 @@ namespace MediLabDapper.Repositories.DoctorRepositories
 
         public async Task<IEnumerable<ResultDoctorWithDepartmentDto>> GetAllDoctorsWithDepartmentAsync()
         {
-            var query = "Select DoctorId,NameSurname,ImageUrl,Doctors.Description,DepartmentName from Doctors inner join departments on Doctors.DepartmentId=Departments.DepartmentId";
+            var query = "Select DoctorId,NameSurname,Doctors.ImageUrl,Doctors.Description,DepartmentName from Doctors inner join departments on Doctors.DepartmentId=Departments.DepartmentId";
             return await _db.QueryAsync<ResultDoctorWithDepartmentDto>(query);
         }
 
         public async Task<IEnumerable<ResultDoctorWithDepartmentDto>> GetAllDoctorsWithDepartmentIdAsync(int departmentId)
         {
-            var query = "Select DoctorId,NameSurname,ImageUrl,Doctors.Description,DepartmentName from Doctors inner join departments on Doctors.DepartmentId=Departments.DepartmentId where Doctors.DepartmentId = @DepartmentId";
+            var query = "Select DoctorId,NameSurname,Doctors.ImageUrl,Doctors.Description,DepartmentName from Doctors inner join departments on Doctors.DepartmentId=Departments.DepartmentId where Doctors.DepartmentId = @DepartmentId";
             var parameters = new DynamicParameters();
             parameters.Add("@DepartmentId", departmentId);
             return await _db.QueryAsync<ResultDoctorWithDepartmentDto>(query,parameters);

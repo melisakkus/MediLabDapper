@@ -13,7 +13,7 @@
 
     <div class="card">
         <div class="table-responsive text-nowrap">
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -25,10 +25,11 @@
                 <tbody class="table-border-bottom-0">
                     @foreach (var item in Model)
                     {
+                        count++;
                         <tr>
                             <td><strong>@count</strong></td>
                             <td>@item.Title</td>
-                            <td>@item.Description</td>
+                            <td>@(item.Description.Length > 79 ? item.Description.Substring(0,79) + "..." : item.Description)</td>
                             <td>
                                 <a href="/Banner/Delete/@item.BannerId" class="btn btn-sm btn-danger me-2">
                                     <i class="bx bx-trash me-1"></i> Sil

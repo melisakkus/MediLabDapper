@@ -12,7 +12,7 @@
 
     <div class="card">
         <div class="table-responsive text-nowrap">
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -29,8 +29,9 @@
                         count++;
                         <tr>
                             <td><strong>@count</strong></td>
-                            <td>"@item.Comment"</td>
-                            <td>@item.FullName</td>
+                            <td>"@(item.Comment.Length > 50 ? item.Comment.Substring(0,50) + "..." : item.Comment)"</td>
+
+                            <td><img src="@item.ImageUrl" style="width:50px;height:50px; border-radius:50%" />   @item.FullName</td>
                             <td>
                                 @for (int i = 0; i < item.Review; i++)
                                 {

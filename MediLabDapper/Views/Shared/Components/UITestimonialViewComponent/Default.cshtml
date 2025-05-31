@@ -1,0 +1,80 @@
+﻿@*UITestimonialViewComponent*@
+@model IEnumerable<ResultTestimonialDto>
+
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="testimonials section">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-5 info" data-aos="fade-up" data-aos-delay="100">
+                <h3>Hastalarımızdan Gelen Yorumlar</h3>
+                <p>
+                    Medilab Hastanesi olarak, şifa arayışında olan hastalarımızın memnuniyeti ve güveni bizim için her zaman en büyük motivasyon kaynağıdır. Aldığımız olumlu geri bildirimler, sizlere sunduğumuz kaliteli hizmetin en güzel kanıtıdır.
+                </p>
+            </div>
+
+            <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
+
+                <div class="swiper init-swiper">
+                    <script type="application/json" class="swiper-config">
+                        {
+                          "loop": true,
+                          "speed": 600,
+                          "autoplay": {
+                            "delay": 5000
+                          },
+                          "slidesPerView": "auto",
+                          "pagination": {
+                            "el": ".swiper-pagination",
+                            "type": "bullets",
+                            "clickable": true
+                          }
+                        }
+                    </script>
+                    <div class="swiper-wrapper">
+
+                        @foreach(var item in Model)
+                        {
+                            
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <div class="d-flex">
+                                    <img src="@item.ImageUrl" class="testimonial-img flex-shrink-0" alt="">
+                                    <div>
+                                        <h3>@item.FullName</h3>
+                                        <h4>@item.JobTitle</h4>
+                                        <div class="stars">
+                                                @for (int i = 0; i < item.Review; i++)
+                                                {
+                                                    <i class="bi bi-star-fill"></i>
+                                                }
+                                                @for (int i = 0; i < (5 - item.Review); i++)
+                                                {
+                                                    <i class="bi bi-star"></i>
+                                                }
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    <span>@item.Comment</span>
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div><!-- End testimonial item -->
+                        }
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section><!-- /Testimonials Section -->

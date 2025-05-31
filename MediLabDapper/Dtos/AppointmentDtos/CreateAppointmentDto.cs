@@ -23,10 +23,10 @@ namespace MediLabDapper.Dtos.AppointmentDtos
         public TimeSpan Time { get; set; }
 
         [Required(ErrorMessage = "Bölüm seçilmelidir.")]
-        public int DepartmentId { get; set; }
+        public int? DepartmentId { get; set; }
 
         [Required(ErrorMessage = "Doktor seçilmelidir.")]
-        public int DoctorId { get; set; }
+        public int? DoctorId { get; set; }
 
         [MaxLength(400, ErrorMessage = "Randevu saati en fazla 400 karakter olabilir.")]
         public string? Message { get; set; }

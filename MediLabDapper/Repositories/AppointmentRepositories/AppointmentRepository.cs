@@ -60,6 +60,33 @@ namespace MediLabDapper.Repositories.AppointmentRepositories
             return _dbConnection.QueryAsync<ResultAppointmentDto>(query);
         }
 
+        public Task<IEnumerable<ResultAppointmentDto>> GetAvailableAppointmentsWDocWDep(int departmentId, int doctorId)
+        {
+            var query = "SELECT AppointmentId,FullName,Email,Phone,Date,Time,IsApproved,NameSurname,DepartmentName FROM Appointments INNER JOIN Doctors ON Doctors.DoctorId = Appointments.DoctorId INNER JOIN Departments ON Departments.DepartmentId = Appointments.DepartmentId where Appointments.DoctorId = @doctorId and Appointments.DepartmentId=@departmentId  and (Appointments.FullName IS NULL OR Appointments.FullName = '') ";
+            var parameters = new DynamicParameters();
+            parameters.Add("@doctorId", doctorId);
+            parameters.Add("@departmentId", departmentId);
+            return _dbConnection.QueryAsync<ResultAppointmentDto>(query,parameters);
+        }
 
+        public async Task UpdateAppointmentWithUserInfo(int appointmentId, CreateAppointmentDto dto)
+        {
+            var query = @"UPDATE Appointments 
+                  SET FullName = @FullName, 
+                      Email = @Email, 
+                      Phone = @Phone, 
+                      Message = @Message,
+                      IsApproved = 0
+                  WHERE AppointmentId = @AppointmentId";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@AppointmentId", appointmentId);
+            parameters.Add("@FullName", dto.FullName);
+            parameters.Add("@Email", dto.Email);
+            parameters.Add("@Phone", dto.Phone);
+            parameters.Add("@Message", dto.Message);
+
+            await _dbConnection.ExecuteAsync(query, parameters);
+        }
     }
 }

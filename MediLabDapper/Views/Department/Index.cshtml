@@ -4,7 +4,9 @@
     ViewData["Title"] = "Bölümler Yönetimi";
     Layout = "~/Views/AdminLayout/Layout.cshtml";
 }
-
+@{
+    int count = 0;
+}
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4">Departmanlar</h4>
 
@@ -22,11 +24,12 @@
                 <tbody class="table-border-bottom-0">
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td><strong>@item.DepartmentId</strong></td>
-                                <td>@item.DepartmentName</td>
-                                <td>@item.Description</td>
-                                <td>
+                        count++;
+                        <tr>
+                                <td><strong>@count</strong></td>
+                            <td> <img src="@item.ImageUrl" style="width:80px;height:80px;border-radius: 50%;" />    @item.DepartmentName</td>
+                            <td>@(item.Description.Length > 79 ? item.Description.Substring(0, 79) + "..." : item.Description)</td>
+                            <td>
                                     <a href="/Department/DeleteDepartment/@item.DepartmentId" class="btn btn-sm btn-danger me-2">
                                         <i class="bx bx-trash me-1"></i> Sil
                                     </a>

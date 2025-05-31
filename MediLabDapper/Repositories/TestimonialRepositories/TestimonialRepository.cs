@@ -18,7 +18,7 @@ namespace MediLabDapper.Repositories.TestimonialRepositories
 
         public async Task CreateAsync(CreateTestimonialDto createTestimonialDto)
         {
-            var query = "insert into Testimonials (Comment,FullName,Review,JobTitle) values (@Comment,@FullName,@Review,@JobTitle)";
+            var query = "insert into Testimonials (Comment,FullName,Review,JobTitle,ImageUrl) values (@Comment,@FullName,@Review,@JobTitle,@ImageUrl)";
             var parameter = new DynamicParameters(createTestimonialDto);
             await _dbConnection.ExecuteAsync(query,parameter);
         }
@@ -47,7 +47,7 @@ namespace MediLabDapper.Repositories.TestimonialRepositories
 
         public Task UpdateAsync(UpdateTestimonialDto updateTestimonialDto)
         {
-            var query = "update Testimonials set Comment = @Comment, FullName = @FullName, Review = @Review, JobTitle = @JobTitle where TestimonialId = @TestimonialId";
+            var query = "update Testimonials set Comment = @Comment, FullName = @FullName, Review = @Review, JobTitle = @JobTitle, ImageUrl=@ImageUrl where TestimonialId = @TestimonialId";
             var parameters = new DynamicParameters(updateTestimonialDto);
             return _dbConnection.ExecuteAsync(query, parameters);
         }

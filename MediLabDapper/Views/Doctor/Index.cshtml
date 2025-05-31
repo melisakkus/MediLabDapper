@@ -33,7 +33,7 @@
                             <td><strong>@count</strong></td>
                             <td><img src="@item.ImageUrl" style="height:75px;width:75px; border-radius:50%" /></td>
                             <td>@item.NameSurname</td>
-                            <td>@item.Description</td>
+                            <td>@(item.Description.Length > 50 ? item.Description.Substring(0, 50) + "..." : item.Description)</td>
                             <td>@item.DepartmentName</td>
                             <td>
                                 <a href="/Doctor/DeleteDoctor/@item.DoctorId" class="btn btn-sm btn-danger me-2">

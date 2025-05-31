@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ResultBannerDto>
+@*UIBannerViewComponent*@
+
+<section id="hero" class="hero section light-background">
+
+    <img src="~/MediLab-1.0.0/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+
+    <div class="container position-relative">
+
+        <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
+            <h2>MEDİLAB'A HOŞ GELDİNİZ</h2>
+            <p>
+                Her Zaman Yanınızda, Sağlığınız İçin.
+            </p>
+        </div><!-- End Welcome -->
+
+        <div class="content row gy-4">
+            <div class="col-lg-4 d-flex align-items-stretch">
+                <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
+                    <h3>Neden Medilab'ı Tercih Etmelisiniz?</h3>
+                    <p>
+                        Modern tıbbın en son teknolojileri, uzman hekim ve deneyimli sağlık kadrosuyla, hasta odaklı ve etik değerlere bağlı kalarak, konforlu ve güvenli bir ortamda en yüksek kalitede sağlık hizmeti sunulmaktadır.
+                    </p>
+                    <div class="text-center">
+                        <a href="#about" class="more-btn"><span>Daha Fazla</span> <i class="bi bi-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div><!-- End Why Box -->
+
+
+            <div class="col-lg-8 d-flex align-items-stretch">
+                <div class="d-flex flex-column justify-content-center">
+                    <div class="row gy-4">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="icon-box" data-aos="zoom-out" data-aos-delay="300">
+                                    <i class="@item.Icon"></i>
+                                    <h4>@item.Title</h4>
+                                    <p>@item.Description</p>
+                                </div>
+                            </div>
+                            <!-- End Icon Box -->
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div><!-- End  Content-->
+
+    </div>
+
+</section>

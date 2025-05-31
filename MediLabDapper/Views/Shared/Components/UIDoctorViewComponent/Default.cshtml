@@ -1,0 +1,37 @@
+﻿@*UIDoctorViewComponent*@
+@model IEnumerable<ResultDoctorWithDepartmentDto>
+
+
+<!-- Doctors Section -->
+<section id="doctors" class="doctors section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Doktorlar </h2>
+        <p>Medilab Hastanesi, alanında uzman, deneyimli ve kendini sürekli geliştiren hekim kadrosuyla sağlığınız için en iyi hizmeti sunmaktadır. </p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row gy-4">
+
+            @foreach(var item in Model)
+            {                
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="team-member d-flex align-items-start">
+                    <div class="pic"><img src="@item.ImageUrl" class="img-fluid" alt=""></div>
+                    <div class="member-info">
+                        <h4>@item.NameSurname</h4>
+                        <span>@item.DepartmentName</span>
+                        <p>@item.Description</p>
+                    </div>
+                </div>
+            </div><!-- End Team Member -->
+            }
+
+
+        </div>
+
+    </div>
+
+</section><!-- /Doctors Section -->

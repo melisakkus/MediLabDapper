@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ResultDepartmentDto>
+@*UIDepartmentViewComponent*@
+
+<!-- Departments Section -->
+<section id="departments" class="departments section">
+
+    <section id="departments" class="departments section">
+
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Bölümler </h2>
+            <p>Medilab Hastanesi olarak, sağlığınızın her alanına yönelik uzmanlık gerektiren birçok tıbbi bölümde hizmet vermekteyiz. Her bir birimimiz, alanında yetkin hekimler ve modern donanımla donatılmıştır.</p>
+        </div><div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <ul class="nav nav-tabs flex-column">
+                        @{
+                            int departmentIndex = 0; 
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link @(departmentIndex == 0 ? "active show" : "")"
+                                   data-bs-toggle="tab"
+                                   href="#departments-tab-@item.DepartmentId">@item.DepartmentName</a>
+                            </li>
+                            departmentIndex++;
+                        }
+                    </ul>
+                </div>
+                <div class="col-lg-9 mt-4 mt-lg-0">
+                    <div class="tab-content">
+                        @{
+                            departmentIndex = 0; 
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <div class="tab-pane @(departmentIndex == 0 ? "active show" : "")" id="departments-tab-@item.DepartmentId">
+                                <div class="row">
+                                    <div class="col-lg-8 details order-2 order-lg-1">
+                                        <h3>@item.DepartmentName</h3>
+                                        <p class="fst-italic">@item.Description</p>
+                                    </div>
+                                    <div class="col-lg-4 text-center order-1 order-lg-2">
+,                                         <img src="@item.ImageUrl" alt="Bölüm Resmi" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                            departmentIndex++;
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+</section><!-- /Departments Section -->

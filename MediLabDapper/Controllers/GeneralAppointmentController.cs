@@ -16,7 +16,7 @@ namespace MediLabDapper.Controllers
             var listAppointment = values.OrderByDescending(x => x.Date).Where(x => x.FullName == null).ToList();
 
             var notEmptyAppointmentList = await _appointmentRepository.GetAppointmentsWDocWDep();
-            ViewBag.NotEmptyAppointments = notEmptyAppointmentList.Where(x => x.FullName != null).ToList();
+            ViewBag.NotEmptyAppointments = notEmptyAppointmentList.OrderByDescending(x => x.Date).Where(x => x.FullName != null).ToList();
             return View(listAppointment);
         }
 

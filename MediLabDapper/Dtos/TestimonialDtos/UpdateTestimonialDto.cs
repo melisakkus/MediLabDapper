@@ -17,5 +17,7 @@ namespace MediLabDapper.Dtos.TestimonialDtos
         [Required(ErrorMessage = "Değerlendirme boş bırakılamaz.")]
         public int Review { get; set; }
         public string? JobTitle { get; set; }
+        public string? ImageUrl { get; set; }
+
     }
 }

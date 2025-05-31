@@ -1,0 +1,33 @@
+﻿@*UIServiceViewComponent*@
+@model IEnumerable<ResultServiceDto>
+
+<section id="services" class="services section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Hizmetlerimiz</h2>
+        <p>Medilab Hastanesi olarak, sağlığınız için geniş bir yelpazede, modern ve güvenilir sağlık hizmetleri sunmaktayız. Uzman ekiplerimizle her an yanınızdayız.</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row gy-4">
+            @foreach(var item in Model)
+            {                
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-item  position-relative">
+                    <div class="icon">
+                        <i class="@item.Icon"></i>
+                    </div>
+                    <a href="#" class="stretched-link">
+                        <h3>@item.Title</h3>
+                    </a>
+                    <p>@item.Explanation</p>
+                </div>
+            </div><!-- End Service Item -->
+            }
+        </div>
+
+    </div>
+
+</section>
