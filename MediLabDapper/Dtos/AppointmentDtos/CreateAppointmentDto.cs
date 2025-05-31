@@ -2,7 +2,7 @@
 
 namespace MediLabDapper.Dtos.AppointmentDtos
 {
-    public class GeneralCreateAppointmentDto
+    public class CreateAppointmentDto
     {
 
         [Required(ErrorMessage = "Ad soyad boş bırakılamaz.")]

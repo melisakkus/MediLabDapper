@@ -2,6 +2,7 @@
 using MediLabDapper.Context;
 using MediLabDapper.Dtos.AboutDtos;
 using MediLabDapper.Dtos.AppointmentDtos;
+using MediLabDapper.Dtos.GeneralAppointmentDtos;
 using System.Data;
 
 namespace MediLabDapper.Repositories.AppointmentRepositories
@@ -17,7 +18,7 @@ namespace MediLabDapper.Repositories.AppointmentRepositories
             _dbConnection = _context.CreateConnection();
         }
 
-        public async Task CreateAsync(GeneralCreateAppointmentDto createAppointmentDto)
+        public async Task CreateAsync(CreateAppointmentDto createAppointmentDto)
         {
             var query = "insert into Appointments (FullName,Email,Phone,Date,DepartmentId,DoctorId,Message,Time,IsApproved) values (@FullName,@Email,@Phone,@Date,@DepartmentId,@DoctorId,@Message,@Time,@IsApproved)";
             var parameter = new DynamicParameters(createAppointmentDto);
@@ -32,25 +33,33 @@ namespace MediLabDapper.Repositories.AppointmentRepositories
             return _dbConnection.ExecuteAsync(query, parameter);
         }
 
-        public Task<IEnumerable<GeneralResultAppointmentDto>> GetAllAsync()
+        public Task<IEnumerable<ResultAppointmentDto>> GetAllAsync()
         {
             var query = "select * from Appointments";
-            return _dbConnection.QueryAsync<GeneralResultAppointmentDto>(query);
+            return _dbConnection.QueryAsync<ResultAppointmentDto>(query);
         }
 
-        public Task<GeneralGetByIdAppointmentDto> GetByIdAsync(int id)
+        public Task<GetByIdAppointmentDto> GetByIdAsync(int id)
         {
             var query = "select * from Appointments where AppointmentId = @AppointmentId";
             var parameters = new DynamicParameters();
             parameters.Add("@AppointmentId", id);
-            return _dbConnection.QueryFirstOrDefaultAsync<GeneralGetByIdAppointmentDto>(query, parameters);
+            return _dbConnection.QueryFirstOrDefaultAsync<GetByIdAppointmentDto>(query, parameters);
         }
 
-        public Task UpdateAsync(GeneralUpdateAppointmentDto updateAppointmentDto)
+        public Task UpdateAsync(UpdateAppointmentDto updateAppointmentDto)
         {
             var query = "update Appointments set FullName = @FullName, Email = @Email, Phone = @Phone, Date = @Date, DepartmentId = @DepartmentId, DoctorId = @DoctorId, Message = @Message, Time = @Time , IsApproved = @IsApproved where AppointmentId = @AppointmentId";
             var parameters = new DynamicParameters(updateAppointmentDto);
             return _dbConnection.ExecuteAsync(query, parameters);
         }
+
+        public Task<IEnumerable<ResultAppointmentDto>> GetAppointmentsWDocWDep()
+        {
+            var query = "SELECT AppointmentId,FullName,Email,Phone,Date,Time,IsApproved,NameSurname,DepartmentName FROM Appointments INNER JOIN Doctors ON Doctors.DoctorId = Appointments.DoctorId INNER JOIN Departments ON Departments.DepartmentId = Appointments.DepartmentId";
+            return _dbConnection.QueryAsync<ResultAppointmentDto>(query);
+        }
+
+
     }
 }

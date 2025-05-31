@@ -1,27 +1,50 @@
 ﻿using MediLabDapper.Dtos.AppointmentDtos;
 using MediLabDapper.Dtos.ServiceDtos;
 using MediLabDapper.Repositories.AppointmentRepositories;
+using MediLabDapper.Repositories.DepartmanRepositories;
+using MediLabDapper.Repositories.DoctorRepositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json.Linq;
 using NuGet.Protocol.Core.Types;
 
 namespace MediLabDapper.Controllers
 {
-    public class AppointmentController(IAppointmentRepository _repository) : Controller
+    public class AppointmentController(IAppointmentRepository _repository, IDepartmentRepository _departmentRepository, IDoctorRepository _doctorRepository) : Controller
     {
         public async Task<IActionResult> Index()
         {
-            var values = await _repository.GetAllAsync();
-            var listAppointment = values.OrderByDescending(x => x.Date).ToList();
+            var values = await _repository.GetAppointmentsWDocWDep();
+            var listAppointment = values.OrderByDescending(x => x.Date).Where(x => x.FullName != null).ToList();
             return View(listAppointment);
         }
 
-        public IActionResult Create()
+        public async Task<JsonResult> GetDoctorsByDepartment(int departmentId)
         {
+            var doctors = await _doctorRepository.GetAllDoctorsWithDepartmentIdAsync(departmentId);
+            var doctorList = doctors.Select(x => new SelectListItem
+            {
+                Text = x.NameSurname,
+                Value = x.DoctorId.ToString()
+            }).ToList();
+
+            return Json(doctorList);
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            var departments = await _departmentRepository.GetAllDepartmentsAsync();
+            ViewBag.departmentList = (from x in departments
+                                      select new SelectListItem
+                                      {
+                                          Text = x.DepartmentName,
+                                          Value = x.DepartmentId.ToString(),
+                                      }).ToList();
             return View();
         }
+
         [HttpPost]
-        public async Task<IActionResult> Create(GeneralCreateAppointmentDto dto)
+        public async Task<IActionResult> Create(CreateAppointmentDto dto)
         {
             if (!ModelState.IsValid)
             {
@@ -34,7 +57,24 @@ namespace MediLabDapper.Controllers
         public async Task<IActionResult> Update(int id)
         {
             var value = await _repository.GetByIdAsync(id);
-            var updateDto = new GeneralUpdateAppointmentDto
+
+            var departments = await _departmentRepository.GetAllDepartmentsAsync();
+            ViewBag.departmentList = (from x in departments
+                                      select new SelectListItem
+                                      {
+                                          Text = x.DepartmentName,
+                                          Value = x.DepartmentId.ToString(),
+                                      }).ToList();
+
+            var doctorList = await _doctorRepository.GetAllDoctorsWithDepartmentIdAsync(value.DepartmentId);
+            ViewBag.doctorList = doctorList
+           .Select(x => new SelectListItem
+           {
+               Text = x.NameSurname,
+               Value = x.DoctorId.ToString()
+           }).ToList();
+
+            var updateDto = new UpdateAppointmentDto
             {
                 AppointmentId = value.AppointmentId,
                 FullName = value.FullName,
@@ -50,7 +90,7 @@ namespace MediLabDapper.Controllers
             return View(updateDto);
         }
         [HttpPost]
-        public async Task<IActionResult> Update(GeneralUpdateAppointmentDto dto)
+        public async Task<IActionResult> Update(UpdateAppointmentDto dto)
         {
             if (!ModelState.IsValid)
             {
@@ -70,7 +110,7 @@ namespace MediLabDapper.Controllers
         public async Task<IActionResult> Approved(int id)
         {
             var value = await _repository.GetByIdAsync(id);
-            var updateDto = new GeneralUpdateAppointmentDto
+            var updateDto = new UpdateAppointmentDto
             {
                 AppointmentId = value.AppointmentId,
                 FullName = value.FullName,
@@ -89,7 +129,7 @@ namespace MediLabDapper.Controllers
         public async Task<IActionResult> Decline(int id)
         {
             var value = await _repository.GetByIdAsync(id);
-            var updateDto = new GeneralUpdateAppointmentDto
+            var updateDto = new UpdateAppointmentDto
             {
                 AppointmentId = value.AppointmentId,
                 FullName = value.FullName,
@@ -109,7 +149,7 @@ namespace MediLabDapper.Controllers
         public async Task<IActionResult> Waiting(int id)
         {
             var value = await _repository.GetByIdAsync(id);
-            var updateDto = new GeneralUpdateAppointmentDto
+            var updateDto = new UpdateAppointmentDto
             {
                 AppointmentId = value.AppointmentId,
                 FullName = value.FullName,

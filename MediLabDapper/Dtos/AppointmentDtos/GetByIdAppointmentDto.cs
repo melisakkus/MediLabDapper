@@ -2,7 +2,7 @@
 
 namespace MediLabDapper.Dtos.AppointmentDtos
 {
-    public class GeneralGetByIdAppointmentDto
+    public class GetByIdAppointmentDto
     {
         public int AppointmentId { get; set; }
         public string FullName { get; set; }       

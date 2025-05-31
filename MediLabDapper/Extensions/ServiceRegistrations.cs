@@ -5,6 +5,7 @@ using MediLabDapper.Repositories.BannerRepositories;
 using MediLabDapper.Repositories.ContactRepositories;
 using MediLabDapper.Repositories.DepartmanRepositories;
 using MediLabDapper.Repositories.DoctorRepositories;
+using MediLabDapper.Repositories.GeneralAppointmentRepositories;
 using MediLabDapper.Repositories.ServiceRepositories;
 using MediLabDapper.Repositories.TestimonialRepositories;
 
@@ -24,6 +25,7 @@ namespace MediLabDapper.Extensions
             services.AddScoped<IServiceRepository, ServiceRepository>();
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IAboutRepository, AboutRepository>();
+            services.AddScoped<IGeneralAppointmentRepository, GeneralAppointmentRepository>();
 
         }
 

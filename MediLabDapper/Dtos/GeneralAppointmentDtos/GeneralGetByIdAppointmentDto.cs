@@ -7,7 +7,9 @@ namespace MediLabDapper.Dtos.GeneralAppointmentDtos
         public int AppointmentId { get; set; }
         public DateTime Date { get; set; }
         public TimeSpan Time { get; set; }
+        public string DepartmentName { get; set; }        
         public int DepartmentId { get; set; }        
-        public int DoctorId { get; set; }
+        public int DoctorId { get; set; }        
+        public string NameSurname { get; set; }
     }
 }

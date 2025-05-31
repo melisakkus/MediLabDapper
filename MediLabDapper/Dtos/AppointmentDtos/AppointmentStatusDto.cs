@@ -1,6 +1,6 @@
 ﻿namespace MediLabDapper.Dtos.AppointmentDtos
 {
-    public enum GeneralAppointmentStatusDto
+    public enum AppointmentStatusDto
     {
         Beklemede = 0, 
         Onaylı = 1,

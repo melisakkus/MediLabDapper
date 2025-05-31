@@ -12,5 +12,6 @@ namespace MediLabDapper.Repositories.DoctorRepositories
 
 
         Task<IEnumerable<ResultDoctorWithDepartmentDto>> GetAllDoctorsWithDepartmentAsync();
+        Task<IEnumerable<ResultDoctorWithDepartmentDto>> GetAllDoctorsWithDepartmentIdAsync(int departmentId);
     }
 }

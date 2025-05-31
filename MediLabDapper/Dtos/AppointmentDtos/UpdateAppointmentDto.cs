@@ -2,7 +2,7 @@
 
 namespace MediLabDapper.Dtos.AppointmentDtos
 {
-    public class GeneralUpdateAppointmentDto
+    public class UpdateAppointmentDto
     {
         public int AppointmentId { get; set; }
 
@@ -33,6 +33,7 @@ namespace MediLabDapper.Dtos.AppointmentDtos
         public string? Message { get; set; }
 
         public AppointmentStatusDto IsApproved { get; set; }
+
 
     }
 }

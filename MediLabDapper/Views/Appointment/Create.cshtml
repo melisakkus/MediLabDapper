@@ -1,4 +1,4 @@
-﻿@model GeneralCreateAppointmentDto
+﻿@model CreateAppointmentDto
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/AdminLayout/Layout.cshtml";
@@ -37,12 +37,20 @@
                 </div>
                 <div class="mb-3">
                     <label for="DepartmentId" class="form-label">Departman</label>
-                    <input type="number" asp-for="DepartmentId" class="form-control" />
+                    <select asp-for="DepartmentId" class="form-control" item="departmentId">
+                        <option value="">Lütfen seçiniz...</option>
+                        @foreach(var item in ViewBag.departmentList)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        })
+                    </select>
                     <span asp-validation-for="DepartmentId" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label for="DoctorId" class="form-label">Doktor</label>
-                    <input type="number" asp-for="DoctorId" class="form-control" />
+                    <select asp-for="DoctorId" class="form-control" id="DoctorId">
+                        <option value="">Lütfen önce departman seçiniz...</option>
+                    </select>
                     <span asp-validation-for="DoctorId" class="text-danger"></span>
                 </div>
 
@@ -74,3 +82,33 @@
         </div>
     </div>
 </div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+        $("#DepartmentId").change(function(){
+            var departmentId = $(this).val();
+            if (departmentId) {
+                $.ajax({
+                    url : '/GeneralAppointment/GetDoctorsByDepartmentId',
+                    type : 'GET',
+                    data : { departmentId: departmentId },
+                    success: function (data) {
+                        var doctorSelect = $("#DoctorId");
+                        doctorSelect.empty();
+                        doctorSelect.append('<option value="">Seçiniz</option>');
+                        $.each(data, function (index, item) {
+                            doctorSelect.append('<option value="' + item.value + '">' + item.text + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $("#DoctorId").empty().append('<option value="">Seçiniz</option>');
+            }
+        });
+    });
+</script>
+}
